@@ -1,0 +1,12 @@
+dev:
+  vpc_mode_is_disabled: 'This is a dummy value so we can have VPC mode running in prod, but not in any other env'
+sit:
+  vpc_mode_is_disabled: 'This is a dummy value so we can have VPC mode running in prod, but not in any other env'
+qa:
+  vpc_mode_is_disabled: 'This is a dummy value so we can have VPC mode running in prod, but not in any other env'
+prod:
+  securityGroupIds:
+    - xx-xxxxxxxxxxxxxxxxx
+  subnetIds:
+    - subnet-xxxxxxxx
+    - subnet-xxxxxxxx

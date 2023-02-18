@@ -1,0 +1,52 @@
+service:
+  name: api-template
+
+useDotenv: true
+
+# Add the serverless-webpack plugin
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-webpack
+
+custom:
+  webpackIncludeModules: true
+  stage: '${opt:stage, self:provider.stage}'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  memorySize: 512 # default is 1024MB, 128MB is minimum
+  timeout: 30 # default is 6s
+  stage: dev
+  tracing: true # enable tracing
+  iamRoleStatements:
+    - Effect: 'Allow' # xray permissions (required)
+      Action:
+        - 'xray:PutTraceSegments'
+        - 'xray:PutTelemetryRecords'
+      Resource:
+        - '*'
+  vpc: ${file(vpc_settings.yml):${self:custom.stage}}
+
+functions:
+  app:
+    handler: src/lambda.handler
+    events:
+      - http:
+          method: ANY
+          path: '/'
+      - http:
+          method: ANY
+          path: '/{proxy+}'
+
+resources:
+  Resources:
+    GatewayResponseDefault4XX:
+      Type: 'AWS::ApiGateway::GatewayResponse'
+      Properties:
+        ResponseParameters:
+          gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
+          gatewayresponse.header.Access-Control-Allow-Headers: "'*'"
+        ResponseType: DEFAULT_4XX
+        RestApiId:
+          Ref: 'ApiGatewayRestApi'
