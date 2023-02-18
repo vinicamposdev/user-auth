@@ -52,7 +52,7 @@ export class User {
   }
 
   public static async add(this: ReturnModelType<typeof User>, { password, name }: { password: string; name?: string }): Promise<DocumentType<User>> {
-    return this.create({ password, name });
+    return this.create({email:'',password,name});
   }
 
   public static async getById(this: ReturnModelType<typeof User>, userId: string, includePassword?: boolean): Promise<DocumentType<User> | null> {
