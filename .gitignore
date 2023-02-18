@@ -147,3 +147,5 @@ Temporary Items
 
 # WebPack generated files
 .webpack
+
+build
