@@ -17,18 +17,18 @@ export const login = async (
   password: string,
   clientInfo: ClientInfo
 ) => {
- // Your solution here
-
+ // TODO: Your solution here
+  return {}
 };
 
 export const refreshToken = async (refreshToken: string) => {
- // Your solution here
-
+ // TODO: Your solution here
+ return {}
 };
 
 export const register = async (user: User) => {
-  // Your solution here
-  
+  // TODO: Your solution here
+  return {}
 };
 
 export const forgotPassword = async (email: string) => {
