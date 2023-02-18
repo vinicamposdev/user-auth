@@ -7,6 +7,7 @@ useDotenv: true
 plugins:
   - serverless-dotenv-plugin
   - serverless-webpack
+  - serverless-offline
 
 custom:
   webpackIncludeModules: true
