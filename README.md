@@ -2,6 +2,13 @@
 
 ### This is a project to be used as a template to create new APIs or microservices for SROA projects
 
+## Installation
+
+```sh
+nvm install lts/fermium
+nvm use lts/fermium
+npm i --legacy-peer-deps
+```
 ## How to use (Basic)
 
 - Clone the project
