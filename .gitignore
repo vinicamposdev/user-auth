@@ -144,3 +144,6 @@ Temporary Items
 .env.*
 .env
 !.env.default
+
+# WebPack generated files
+.webpack
