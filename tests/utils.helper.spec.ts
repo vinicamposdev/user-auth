@@ -1,4 +1,4 @@
-import { isNullOrUndefined, safelyParseJSON } from '../../helpers/utils.helper';
+import { isNullOrUndefined, safelyParseJSON } from '@/helpers/utils.helper';
 
 describe('utils', () => {
   describe('is null or undefined', () => {
