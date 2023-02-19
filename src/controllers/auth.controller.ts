@@ -18,7 +18,20 @@ export const login = async (
   clientInfo: ClientInfo
 ) => {
  // TODO: Your solution here
-  return {}
+  const user = await UserModel.getByEmail(email);
+  if (user) {
+    const isValid = await comparePasswords(password, user.password)
+    if (isValid) {
+      const accessToken = createToken(user)
+      const refreshToken = RefreshTokenModel
+      await refreshToken.add(accessToken, new Date(process.env['TOKEN_EXPIRES_IN']), user.id, clientInfo)
+      return {
+        accessToken,
+        name: user.name
+      }
+    }
+  }
+  return null
 };
 
 export const refreshToken = async (refreshToken: string) => {
