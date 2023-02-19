@@ -51,8 +51,10 @@ export class User {
     return { users, count };
   }
 
-  public static async add(this: ReturnModelType<typeof User>, { password, name }: { password: string; name?: string }): Promise<DocumentType<User>> {
-    return this.create({email:'',password,name});
+  public static async add(this: ReturnModelType<typeof User>, newUser: User): Promise<{name: string, id: string, email: string}> {
+    const createdUser = await this.create(newUser)
+    const { name, _id, email, role } = createdUser
+    return { name, id: _id, email }
   }
 
   public static async getById(this: ReturnModelType<typeof User>, userId: string, includePassword?: boolean): Promise<DocumentType<User> | null> {
