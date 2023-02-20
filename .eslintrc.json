@@ -1,0 +1,26 @@
+{
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "@typescript-eslint/consistent-type-definitions":"off",
+    "@typescript-eslint/no-namespace": "off",
+    "@typescript-eslint/return-await": "off",
+    "@typescript-eslint/no-shadow": "warn",
+    "@typescript-eslint/consistent-type-imports": "error"
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "import"
+  ],
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+  ]
+}
