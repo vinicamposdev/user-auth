@@ -31,7 +31,7 @@ provider:
 
 functions:
   app:
-    handler: src/lambda.handler
+    handler: src/main/lambda.handler
     events:
       - http:
           method: ANY
