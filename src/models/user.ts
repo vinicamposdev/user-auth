@@ -5,7 +5,9 @@ import {
   plugin,
   DocumentType,
 } from '@typegoose/typegoose';
+import {Types} from 'mongoose';
 import paginate from 'mongoose-paginate-v2';
+import { Role } from './role';
 
 @plugin(paginate)
 export class User {
@@ -16,16 +18,13 @@ export class User {
   public password!: string;
 
   @prop({ trim: true })
-  public name?: string;
+  public name!: string;
 
-  @prop({ trim: true })
-  public firstName?: string;
+  @prop({ enum: Role, type: Number })
+  public role!: Role;
 
-  @prop({ trim: true })
-  public lastName?: string;
-
-  @prop({ trim: true })
-  public role?: string;
+  @prop()
+  public dob?: Date;
 
   @prop({ trim: true })
   public passwordResetToken?: string;
@@ -34,7 +33,7 @@ export class User {
   public passwordResetTokenExpires?: Date;
 
   @prop()
-  public id?: string;
+  public id?: Types.ObjectId;
 
   public static async getByEmail(this: ReturnModelType<typeof User>, email: string, flag = true): Promise<DocumentType<User> | null> {
     return this.findOne({ email }).exec();
