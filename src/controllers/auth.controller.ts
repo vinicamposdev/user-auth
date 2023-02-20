@@ -1,6 +1,6 @@
 import createError from 'http-errors';
 import { User, UserModel } from '../models/user';
-import { ClientInfo, RefreshTokenModel } from '../models/refresh-token';
+import { ClientInfo } from '../models/refresh-token';
 import { comparePasswords, hashPassword } from '../helpers/hash.helper';
 import jwt from 'jsonwebtoken';
 import uuid from 'uuid';
@@ -12,6 +12,12 @@ const createToken = (user: any) => {
   });
 };
 
+export interface CreatedUser { 
+  name: string;
+  id: string;
+  email: string; 
+}
+
 export const login = async (
   email: string,
   password: string,
@@ -22,9 +28,7 @@ export const login = async (
   if (user) {
     const isValid = await comparePasswords(password, user.password)
     if (isValid) {
-      const accessToken = createToken(user)
-      const refreshToken = RefreshTokenModel
-      await refreshToken.add(accessToken, new Date(process.env['TOKEN_EXPIRES_IN']), user.id, clientInfo)
+      const accessToken = createToken({email, password, clientInfo})
       return {
         accessToken,
         name: user.name
@@ -39,9 +43,17 @@ export const refreshToken = async (refreshToken: string) => {
  return {}
 };
 
-export const register = async (user: User) => {
-  // TODO: Your solution here
-  return {}
+export const register = async (newUser: User): Promise<CreatedUser> => {
+  try {
+    const existingUser = await UserModel.getByEmail(newUser.email, false);
+    if (existingUser) {
+      throw new Error ('exists');
+    }
+    newUser.password = hashPassword(newUser.password);
+    return UserModel.add(newUser);
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const forgotPassword = async (email: string) => {
