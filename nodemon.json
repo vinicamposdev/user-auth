@@ -2,7 +2,7 @@
   "watch": ["src"],
   "ext": "ts",
   "ignore": ["src/**/*.spec.ts"],
-  "exec": "ts-node -r dotenv/config ./src/main/app.local.ts",
+  "exec": "ts-node -r dotenv/config ./src/main.v2/server.ts --module",
   "events": {
     "restart": "kill-port 3353",
     "crash": "kill-port 3353"

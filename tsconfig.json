@@ -2,10 +2,14 @@
   "compilerOptions": {
     "outDir": "dist",
     "rootDirs": ["src", "tests"],
-    "baseUrl": "./",
+    "baseUrl": "./src",
+    "paths": {
+      "@/tests/*": ["../tests/*"],
+      "@/*": ["../src/*"],
+    },
     "sourceMap": true,
     "declaration": false,
-    "module": "es2015",
+    "module": "node16",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -14,11 +18,7 @@
     "typeRoots": ["node_modules/@types"],
     "target": "es6",
     "esModuleInterop": true,
-    "lib": ["esnext"],
-    "paths": {
-      "@/tests/*": ["tests/*"],
-      "@/*": ["src/*"]
-    }
+    "lib": ["esnext"]
   },
   "exclude": ["node_modules"]
 }

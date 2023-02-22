@@ -8,6 +8,8 @@ plugins:
   - serverless-dotenv-plugin
   - serverless-webpack
   - serverless-offline
+  - serverless-plugin-typescript
+  - serverless-tscpaths
 
 custom:
   webpackIncludeModules: true
@@ -31,7 +33,7 @@ provider:
 
 functions:
   app:
-    handler: src/main/lambda.handler
+    handler: src/main.v1/lambda.handler
     events:
       - http:
           method: ANY

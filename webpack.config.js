@@ -1,5 +1,6 @@
 const path = require('path');
 const slsw = require('serverless-webpack');
+// const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const entries = {};
 
@@ -13,6 +14,10 @@ module.exports = {
   devtool: 'source-map',
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
+    alias: {
+      // '@': path.join(__dirname, 'src'),
+      '~': path.resolve(__dirname, 'src/')
+    }
   },
   output: {
     libraryTarget: 'commonjs',
@@ -24,9 +29,19 @@ module.exports = {
     rules: [
       // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
       { test: /\.tsx?$/, loader: 'ts-loader' },
+      {
+        test: /\.html$/i,
+        loader: "html-loader",
+      },
     ],
   },
   optimization: {
     minimize: false,
   },
+  externals: [
+    {
+      'nock': 'commonjs2 nock',
+      'mock-aws-s3': 'commonjs2 mock-aws-s3'
+    }
+  ],
 };
