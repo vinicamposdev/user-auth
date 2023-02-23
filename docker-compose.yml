@@ -1,0 +1,27 @@
+version: "3"
+services:
+  mongodb:
+    container_name: mongodb
+    image: mongo:3
+    restart: always
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
+
+  user-auth:
+    container_name: api-container
+    build:
+      context: ./docker/serverless
+    volumes:
+      - ./:/home/user-auth
+      - ./config/aws:/root/.aws
+      - ./dist/:/usr/src/user-auth/dist/
+      - ./package.json:/usr/src/user-auth/package.json
+      - ./yarn.lock:/usr/src/user-auth/yarn.lock
+    ports:
+      - "5050:5050"
+      - "9222:9222"
+    links:
+      - mongodb
+

@@ -150,3 +150,8 @@ Temporary Items
 
 build
 .build
+
+# Mongodb tests
+data
+!src/*/data/*
+!src/data/*
