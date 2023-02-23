@@ -22,6 +22,21 @@ npm i --legacy-peer-deps
 - NodeJS (v14 preferred)
 - An accesible MongoDB database
 
+## Local Development with Docker
+
+Change the environment to:
+```sh
+MONGO_URI=mongodb://mongodb:27017
+```
+And run the following command:
+
+```sh
+docker-compose up -d
+docker exec -it api-container bash
+yarn
+yarn start
+```
+
 ## Architectural Decisions
  - The initial project template was put in the src/main.v1 directory
  - The main.v2 directory represents a sugestion of new code architecture
