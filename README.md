@@ -68,6 +68,13 @@ yarn start
      - Depends on data and domain layers
    - Main depends on the rest of then and wrap the things together to create the application
 
+## Code Quality Check
+
+ - Use the sonar qube in local host using docker
+ - Just run:
+```sh
+yarn sonar
+```
 ## References
  - [Clean Architecture, book by Robert C. Martin](https://www.oreilly.com/library/view/clean-architecture-a/9780134494272/)
  - [Clean Architecture, blog cleancoder by Robert C. Martin](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
