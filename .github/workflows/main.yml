@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+      - develop
 
 jobs:
   deploy:
@@ -19,10 +20,10 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm i --legacy-peer-deps
-    - run: npm test
+    - run: yarn
+    - run: yarn test
     # - name: serverless deploy
-    #   uses: serverless/github-action@v3.1
+    #   uses: serverless/github-action@v3.1 # serverless/github-action@v2
     #   with:
     #     args: deploy
     #   env:
