@@ -1,4 +1,4 @@
-import {RolePretty} from '../../domain/value-objects/roles'
+import {RolePretty} from '../../../../domain/value-objects/roles'
 
 export interface LoadUserByEmailRepository {
   loadByEmail: (email: string) => Promise<LoadUserByEmailRepository.Result>

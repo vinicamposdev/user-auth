@@ -1,4 +1,4 @@
-import {RolePretty} from 'domain/value-objects/roles'
+import {RolePretty} from '../../domain/value-objects/roles'
 
 export interface AddUser {
   add: (user: AddUser.Params) => Promise<AddUser.Result>

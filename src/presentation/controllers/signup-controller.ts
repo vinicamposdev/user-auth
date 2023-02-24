@@ -23,7 +23,7 @@ export class SignUpController implements Controller {
         email,
         password,
         attempts: 0,
-        role: role || 'Guest',
+        role: role || RolePretty.Guest,
         dob
       })
       if (!isValid) {
